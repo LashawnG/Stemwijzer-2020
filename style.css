@@ -1,0 +1,107 @@
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    position: relative;
+    top: 25px;
+    margin: auto;
+    width: 80%;
+    background-color: white;
+    height: 450px;
+
+}
+
+.intro {
+    height: 205px;
+    width: 80%;
+    position: relative;
+    top: 25px;
+    margin: auto;
+    border-top: 2px dotted grey;
+    background-color: #f9f9f9;
+}
+
+.content {
+    position: relative;
+    height: 400px;
+    top: 70px;
+    left: 100px;
+}
+
+img {
+    height: 56px;
+    width: 331px;
+}
+
+h2.desc {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button.w3-btn.w3-black.w3-round.w3-hover-blue {
+    position: relative;
+    font-size: 25px;
+    bottom: 210px;
+    left: 710px;
+    height: 68px;
+    width: 188px;
+}
+
+p.stellingen {
+    color: #4eb5dd;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+img.slot {
+    position: relative;
+    height: 48px;
+    right: 135px;
+    top: 10px;
+}
+
+img.visueel {
+    position: relative;
+    right: 135px;
+    height: 48px;
+    top: 40px;
+
+}
+
+.cookies {
+    position: relative;
+    bottom: 60px;
+    left: 80px;
+    font-size: 15px;
+    width: 290px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.toegankelijk {
+    position: relative;
+    left: 80px;
+    bottom: 20px;
+    font-size: 15px;
+    width: 300px;
+}
+
+.stemmentracker {
+    position: relative;
+    bottom: 45px;
+}
+
+.stemmentracker:hover {
+    border-bottom: 2px solid black;
+}
+
+.introtext {
+    position: relative;
+    bottom: 40px;
+    font-size: 14px;
+    max-width: 1000px;
+}
