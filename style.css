@@ -4,7 +4,7 @@ body {
     background-attachment: fixed;
 }
 
-.container {
+div#container {
     position: relative;
     top: 25px;
     margin: auto;
@@ -14,7 +14,7 @@ body {
 
 }
 
-.intro {
+div#intro {
     height: 205px;
     width: 80%;
     position: relative;
@@ -24,7 +24,7 @@ body {
     background-color: #f9f9f9;
 }
 
-.content {
+div#content, .content {
     position: relative;
     height: 400px;
     top: 70px;
@@ -104,4 +104,49 @@ img.visueel {
     bottom: 40px;
     font-size: 14px;
     max-width: 1000px;
+}
+
+h2#title {
+    color: #4eb5dd;
+    font-weight: bold;
+    position: relative;
+    bottom: 550px;
+    left: 240px;
+}
+
+img#backArrow {
+    position: relative;
+    bottom: 850px;
+    left: 160px;
+    height: 30px;
+    width: 30px;
+}
+
+img#backArrow:hover {
+    position: relative;
+    bottom: 850px;
+    left: 157px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+p#statement {
+    position: relative;
+    bottom: 570px;
+    left: 240px;
+    font-size: 30px;
+    max-width: 800px;
+}
+
+
+
+#btnGeen, #btnEens, #btnOneens {
+    position: relative;
+    bottom: 500px;
+    left: 240px;
+}
+
+#btnGeen {
+    width: 250px;
 }
