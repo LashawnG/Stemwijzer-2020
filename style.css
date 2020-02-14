@@ -137,6 +137,7 @@ p#statement {
     left: 240px;
     font-size: 30px;
     max-width: 800px;
+    height: 160px;
 }
 
 
@@ -149,4 +150,31 @@ p#statement {
 
 #btnGeen {
     width: 250px;
+}
+
+a#overslaan:hover {
+    cursor: pointer;
+}
+
+a#overslaan {
+    position: relative;
+    bottom: 500px;
+    left: 350px;
+    color: #9b9b9b;
+    font-size: 20px;
+}
+
+p#partijen {
+    position: relative;
+    bottom: 450px;
+    left: 290px;
+    font-size: 25px;
+    width: 310px;
+}
+p#partijen:hover {
+    cursor: pointer;
+}
+
+div#details {
+    background-color: #f3f3f3;
 }

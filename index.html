@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Stemwijzer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <script src="subjects.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
@@ -21,7 +20,8 @@
         <img class="slot" src="https://tweedekamer2017.stemwijzer.nl/public/gfx/icon-lock.svg" alt="privacy">
         <p class="cookies">De StemWijzer maakt geen gebruik van cookies. Klik hier voor de volledige privacy statement</p>
 
-        <button id="startBtn" onclick="start()" class="w3-btn w3-black w3-round w3-hover-blue">Start</button>
+        <button id="startBtn" class="w3-btn w3-black w3-round w3-hover-blue" onclick="start()" >Start</button>
+
     </div>
 </div>
 <div id="intro" class="w3-sepia-min">
@@ -37,23 +37,21 @@
     </div>
 </div>
 
-<div id="statements">
+<div id="statements" style="display: none">
     <h2 id="title"></h2>
     <p id="statement"></p>
-    <img onclick="back('home')" id="backArrow" src="https://tweedekamer2017.stemwijzer.nl/public/gfx/icon-arrow-back.svg" alt="back" style="display: none;">
-    <button onclick="" id="btnEens" class="w3-btn w3-black w3-round w3-hover-blue">Eens</button>
-    <button onclick="" id="btnGeen" class="w3-btn w3-black w3-round w3-hover-blue">Geen van beide</button>
-    <button onclick="" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
+    <img onclick="back()" id="backArrow" src="https://tweedekamer2017.stemwijzer.nl/public/gfx/icon-arrow-back.svg" alt="back" style="display: none;">
+    <button onclick="next()" id="btnEens" class="w3-btn w3-black w3-round w3-hover-blue">Eens</button>
+    <button onclick="next()" id="btnGeen" class="w3-btn w3-black w3-round w3-hover-blue">Geen van beide</button>
+    <button onclick="next()" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
+    <a id="overslaan" onclick="next()">Sla deze vraag over</a>
+    <p id="partijen" onclick="openDetails()">Wat vinden de partijen?</p>
+    <div id="details">
 
+    </div>
 </div>
-<script>
- start();
- //
- // for (var i = 0, l = subjects.length; i < l; i++) {
- //     var obj = subjects[i];
- //     console.log(obj.statement);
- // }
-</script>
-
+<script src="script.js"></script>
+<script>start();</script>
 </body>
 </html>
+
