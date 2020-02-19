@@ -176,5 +176,65 @@ p#partijen:hover {
 }
 
 div#details {
+    display: none;
+    position: relative;
+    bottom: 450px;
+    left: 37px;
+    margin: auto;
     background-color: #f3f3f3;
+    width: 65%;
+}
+
+#partijen_details {
+    font-size: 25px;
+}
+
+#closeDetails {
+    cursor: pointer;
+    position: relative;
+    left: 910px;
+    bottom: 60px;
+    width: 25px;
+    font-size: 25px;
+}
+
+/*#eens, #oneens, #geenvanBeide {*/
+/*    position: relative;*/
+/*    left: 40px;*/
+/*    width: 200px;*/
+/*    margin-left: 40px;*/
+/*    padding-right: 100px;*/
+/*    border-bottom: 2px solid black;*/
+/*    font-size: 25px;*/
+/*    font-weight: bold;*/
+/*    display: inline;*/
+/*}*/
+
+#label, #weighted {
+    position: relative;
+    bottom: 400px;
+    right: 600px;
+}
+
+#all, #big, #small, #partieTitle {
+    position: relative;
+    bottom: 150px;
+    left: 250px;
+    margin-right: 20px;
+}
+
+.partieLabel {
+    position: relative;
+    bottom: 150px;
+    left: 250px;
+}
+
+#select {
+    display: none;
+}
+
+#resultBtn {
+    position: relative;
+    left: 900px;
+    display: none;
 }

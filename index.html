@@ -41,17 +41,43 @@
     <h2 id="title"></h2>
     <p id="statement"></p>
     <img onclick="back()" id="backArrow" src="https://tweedekamer2017.stemwijzer.nl/public/gfx/icon-arrow-back.svg" alt="back" style="display: none;">
-    <button onclick="next()" id="btnEens" class="w3-btn w3-black w3-round w3-hover-blue">Eens</button>
-    <button onclick="next()" id="btnGeen" class="w3-btn w3-black w3-round w3-hover-blue">Geen van beide</button>
-    <button onclick="next()" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
-    <a id="overslaan" onclick="next()">Sla deze vraag over</a>
-    <p id="partijen" onclick="openDetails()">Wat vinden de partijen?</p>
-    <div id="details">
+    <button onclick="next('pro')" id="btnEens" class="w3-btn w3-black w3-round w3-hover-blue">Eens</button>
+    <button onclick="next('none')" id="btnGeen" class="w3-btn w3-black w3-round w3-hover-blue">Geen van beide</button>
+    <button onclick="next('con')" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
+    <a id="overslaan" onclick="next('')">Sla deze vraag over</a>
+    <label id="label" for="weighted">Vind u dit onderwerp belangrijk?</label>
+    <input type="checkbox" id="weighted">
 
-    </div>
+<!--    <p id="partijen" onclick="openDetails()">Wat vinden de partijen?</p>-->
+<!--    <div id="details">-->
+<!--        <p id="partijen_details">Wat vinden de partijen?</p>-->
+<!--        <p id="closeDetails" onclick="closeDetails()">x</p>-->
+
+<!--        <p id="eens">Eens</p>-->
+<!--        <p id="geenvanBeide">Geen van Beide</p>-->
+<!--        <p id="oneens">Oneens</p>-->
+<!--        <p id="test"></p>-->
+<!--    </div>-->
+</div>
+
+<div id="select">
+    <h2 id="partieTitle">Welke partijen wilt u mee vergeleken worden?</h2>
+    <label class="partieLabel" for="all">Alle partijen</label>
+    <input type="checkbox" id="all" onclick="option('all')">
+
+    <label class="partieLabel" for="big">Grote partijen</label>
+    <input type="checkbox" id="big" onclick="option('big')">
+
+    <label class="partieLabel" for="small">Seculiere partijen</label>
+    <input type="checkbox" id="small" onclick="option('small')">
+    <button id="resultBtn" onclick="showResult()" class="w3-btn w3-black w3-round w3-hover-blue">Zie resultaat</button>
 </div>
 <script src="script.js"></script>
-<script>start();</script>
+<script>
+    start();
+    counter = 29;
+    next();
+</script>
 </body>
 </html>
 
