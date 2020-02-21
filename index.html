@@ -23,6 +23,10 @@
         <button id="startBtn" class="w3-btn w3-black w3-round w3-hover-blue" onclick="start()" >Start</button>
 
     </div>
+    <div id="result">
+        <h2 id="resultTitle">Jouw top 3 partijen:</h2>
+        <p id="results"></p>
+    </div>
 </div>
 <div id="intro" class="w3-sepia-min">
     <div class="content">
@@ -70,8 +74,9 @@
 
     <label class="partieLabel" for="small">Seculiere partijen</label>
     <input type="checkbox" id="small" onclick="option('small')">
-    <button id="resultBtn" onclick="selectParties()" class="w3-btn w3-black w3-round w3-hover-blue">Zie resultaat</button>
+    <button id="resultBtn" onclick="getResult()" class="w3-btn w3-black w3-round w3-hover-blue">Zie resultaat</button>
 </div>
+
 <script src="script.js"></script>
 <script>
     // start();

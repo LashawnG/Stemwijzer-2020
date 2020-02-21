@@ -11,9 +11,10 @@ const container = document.getElementById('container');
 const weighted = document.getElementById('weighted');
 const select = document.getElementById('select');
 const resultBtn = document.getElementById('resultBtn');
-// const partijen = document.getElementById('partijen');
-// const details = document.getElementById('details');
-
+const results = document.getElementById('results');
+const all = document.getElementById('all');
+const big = document.getElementById('big');
+const small = document.getElementById('small');
 
 //De eerst vraag laden
 function start() {
@@ -29,8 +30,10 @@ function start() {
 
 // Terug gaan naar de vorige pagina
 function back() {
+
     //Antwoord uit array halen
     answers.pop();
+
     //Terug naar home
         if (counter < 1) {
             container.style.height = '450px';
@@ -38,6 +41,7 @@ function back() {
             content.style.display = 'block';
             intro.style.display = 'block';
             statements.style.display = 'none';
+
     //Terug naar vorige vraag
         } else if (counter >= 1) {
             counter--;
@@ -51,6 +55,7 @@ function back() {
 function next(answer) {
     if (counter === 29) {
         saveAnswer(answer);
+
         //Partij pagina inladen
         statements.style.display = 'none';
         container.style.height = '200px';
@@ -65,11 +70,11 @@ function next(answer) {
     if (weighted.checked) {
         weighted.checked = false;
     }
-    // console.log(answers[0].position);
 }
 
 //Antwoord opslaan in array
 function saveAnswer(position) {
+
     //Niks opslaan als de vraag word overgeslagen
     if (position === '') {
         answers.push({
@@ -89,32 +94,31 @@ function saveAnswer(position) {
 //Zorgen dat er maar 1 selectie tegelijk gemaakt kan worden
 function option(selected) {
     if (selected === 'all') {
-        document.getElementById('big').checked = false;
-        document.getElementById('small').checked = false;
+        big.checked = false;
+        small.checked = false;
         resultBtn.style.display = 'block';
 
-        //Door alle antwoorden van de partijen heenlopen per vraag
-        for (var b = 0; b < subjects.length; b++){
-            for (let i = 0; i < subjects[0].parties.length; i++) {
-
-            }
-
-        }
 
     } else if (selected === 'big') {
-        document.getElementById('all').checked = false;
-        document.getElementById('small').checked = false;
+        all.checked = false;
+        small.checked = false;
         resultBtn.style.display = 'block';
 
     } else if (selected === 'small') {
-        document.getElementById('big').checked = false;
-        document.getElementById('all').checked = false;
+        big.checked = false;
+        all.checked = false;
         resultBtn.style.display = 'block';
         console.log(answers);
     }
 }
 
-function selectParties() {
+function getResult() {
+
+    //Result pagina weergeven
+        select.style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        results.style.display = 'block';
+
     //Geeft alle partijen een score waarmee een match kan worden berekend
     for (let i = 0; i < parties.length; i++) {
         parties[i]['score'] = 0;
@@ -122,7 +126,7 @@ function selectParties() {
 
     //Alle partijen
     if (document.getElementById('all').checked) {
-        console.log("all");
+
         //Door alle antwoorden heen lopen
         for (let r = 0; r < answers.length; r++) {
 
@@ -135,22 +139,17 @@ function selectParties() {
 
                     for (let partieNr = 0; partieNr < parties.length; partieNr++) {
                         let party = parties[partieNr];
+
+                        //Matchende partij zoeken in de parties array en de score updaten
                         if (partieName === party.name) {
 
-                            if ( !answers[r].weighted) {
+                            if (!answers[r].weighted) {
                                 party.score ++;
                             }
-                            if ( answers[r].weighted){
+                            else if (answers[r].weighted){
                                 party.score += 2;
                             }
                         }
-                    }
-
-                    //Checken of antwoord zwaarder moet meewegen
-                    if (!answers[r].weighted) {
-                        parties[partieCount].score ++;
-                    } else if (answers[r].weighted){
-                        parties[partieCount].score += 2;
                     }
                 }
             }
@@ -162,11 +161,9 @@ function selectParties() {
 
         //Alleen grote partijen
     } else if (document.getElementById('big').checked){
-        console.log("big");
+
         // Door al jouw antwoorden heen lopen
         for (let r = 0; r < answers.length; r++) {
-
-
 
             //Door alle antwoorden van de partijen heen loopen
             for (let partieCount = 0; partieCount < subjects[r].parties.length; partieCount++) {
@@ -179,10 +176,10 @@ function selectParties() {
                             let party = parties[partieNr];
                             if (partieName === party.name) {
 
-                                    if (!party.secular && !answers[r].weighted) {
+                                    if (party.size > 20 && !answers[r].weighted) {
                                         party.score ++;
                                     }
-                                    if (!party.secular && answers[r].weighted){
+                                    if (party.size > 20 && answers[r].weighted){
                                         party.score += 2;
                                     }
                             }
@@ -191,9 +188,10 @@ function selectParties() {
             }
         }
         sortScores();
-        //Alleen kleine partijen
+
+        //Alleen seculiere partijen
     } else if (document.getElementById('small').checked){
-        console.log("secular");
+
         //Door al jouw antwoorden heen lopen
         for (let r = 0; r < answers.length; r++) {
 
@@ -221,30 +219,20 @@ function selectParties() {
         }
         sortScores();
     }
+
+    //Partijen sorteren op scores van hoog naar laag
     function sortScores() {
         parties.sort(function (a, b) {
             return b.score - a.score;
         });
     }
 
-    console.log(parties);
+    //Top 3 resultaten tonen op het scherm
+    results.innerHTML =
+        parties[0].name + ' score: ' + parties[0].score + '<br>'
+        + parties[1].name + ' score: ' + parties[1].score + '<br>'
+        + parties[2].name + ' score: ' + parties[2].score;
 }
-
-
-
-
-
-
-
-// function openDetails() {
-//     partijen.style.display = 'none';
-//     details.style.display = 'block';
-// }
-
-// function closeDetails() {
-//     partijen.style.display = 'block';
-//     details.style.display = 'none';
-// }
 
 
 

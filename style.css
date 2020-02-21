@@ -238,3 +238,9 @@ div#details {
     left: 900px;
     display: none;
 }
+
+div#result {
+    display: none;
+}
+
+
