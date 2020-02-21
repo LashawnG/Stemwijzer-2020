@@ -27,7 +27,6 @@ function start() {
     statement.innerHTML = subjects[counter].statement;
 }
 
-
 // Terug gaan naar de vorige pagina
 function back() {
     //Antwoord uit array halen
@@ -45,13 +44,13 @@ function back() {
             title.innerHTML = counter+1+ ". " + subjects[counter].title;
             statement.innerHTML = subjects[counter].statement;
          }
-        console.log(answers);
 }
 
 
 //Doorgaan naar de volgende pagina
 function next(answer) {
     if (counter === 29) {
+        saveAnswer(answer);
         //Partij pagina inladen
         statements.style.display = 'none';
         container.style.height = '200px';
@@ -66,6 +65,7 @@ function next(answer) {
     if (weighted.checked) {
         weighted.checked = false;
     }
+    // console.log(answers[0].position);
 }
 
 //Antwoord opslaan in array
@@ -93,6 +93,14 @@ function option(selected) {
         document.getElementById('small').checked = false;
         resultBtn.style.display = 'block';
 
+        //Door alle antwoorden van de partijen heenlopen per vraag
+        for (var b = 0; b < subjects.length; b++){
+            for (let i = 0; i < subjects[0].parties.length; i++) {
+
+            }
+
+        }
+
     } else if (selected === 'big') {
         document.getElementById('all').checked = false;
         document.getElementById('small').checked = false;
@@ -102,33 +110,129 @@ function option(selected) {
         document.getElementById('big').checked = false;
         document.getElementById('all').checked = false;
         resultBtn.style.display = 'block';
+        console.log(answers);
     }
 }
 
-function showResult(selection) {
+function selectParties() {
+    //Geeft alle partijen een score waarmee een match kan worden berekend
+    for (let i = 0; i < parties.length; i++) {
+        parties[i]['score'] = 0;
+    }
+
+    //Alle partijen
     if (document.getElementById('all').checked) {
-        for (let i = 0; i < parties.length; i++) {
-            console.log(parties[i].name);
-        }
-    } else if (document.getElementById('big').checked){
-        for (let i = 0; i < parties.length; i++) {
-            if (parties[i].secular) {
-                console.log(parties[i].name);
-            }
-        }
+        console.log("all");
+        //Door alle antwoorden heen lopen
+        for (let r = 0; r < answers.length; r++) {
 
-    } else if (document.getElementById('small').checked){
-        for (let i = 0; i < parties.length; i++) {
-            if (!parties[i].secular) {
-                console.log(parties[i].name);
+            //Door alle antwoorden van de partijen heen loopen
+            for (let partieCount = 0; partieCount < subjects[r].parties.length; partieCount++) {
+
+                //Jouw antwoorden vergelijken met die van de partijen
+                if (answers[r].position === subjects[r].parties[partieCount].position) {
+                    let partieName = subjects[r].parties[partieCount].name;
+
+                    for (let partieNr = 0; partieNr < parties.length; partieNr++) {
+                        let party = parties[partieNr];
+                        if (partieName === party.name) {
+
+                            if ( !answers[r].weighted) {
+                                party.score ++;
+                            }
+                            if ( answers[r].weighted){
+                                party.score += 2;
+                            }
+                        }
+                    }
+
+                    //Checken of antwoord zwaarder moet meewegen
+                    if (!answers[r].weighted) {
+                        parties[partieCount].score ++;
+                    } else if (answers[r].weighted){
+                        parties[partieCount].score += 2;
+                    }
+                }
             }
         }
+        sortScores();
+
+
+
+
+        //Alleen grote partijen
+    } else if (document.getElementById('big').checked){
+        console.log("big");
+        // Door al jouw antwoorden heen lopen
+        for (let r = 0; r < answers.length; r++) {
+
+
+
+            //Door alle antwoorden van de partijen heen loopen
+            for (let partieCount = 0; partieCount < subjects[r].parties.length; partieCount++) {
+
+                    //Jouw antwoorden vergelijken met die van de partijen
+                    if (answers[r].position === subjects[r].parties[partieCount].position) {
+                       let partieName = subjects[r].parties[partieCount].name;
+
+                        for (let partieNr = 0; partieNr < parties.length; partieNr++) {
+                            let party = parties[partieNr];
+                            if (partieName === party.name) {
+
+                                    if (!party.secular && !answers[r].weighted) {
+                                        party.score ++;
+                                    }
+                                    if (!party.secular && answers[r].weighted){
+                                        party.score += 2;
+                                    }
+                            }
+                        }
+                    }
+            }
+        }
+        sortScores();
+        //Alleen kleine partijen
+    } else if (document.getElementById('small').checked){
+        console.log("secular");
+        //Door al jouw antwoorden heen lopen
+        for (let r = 0; r < answers.length; r++) {
+
+            //Door alle antwoorden van de partijen heen loopen
+            for (let partieCount = 0; partieCount < subjects[r].parties.length; partieCount++) {
+
+
+                //Jouw antwoorden vergelijken met die van de partijen
+                if (answers[r].position === subjects[r].parties[partieCount].position) {
+                    var partieName = subjects[r].parties[partieCount].name;
+
+                    for (var partieNr = 0; partieNr < parties.length; partieNr++) {
+                        var party = parties[partieNr];
+                        if (partieName === party.name) {
+                            if (party.secular && !answers[r].weighted) {
+                                    party.score ++;
+                            }
+                            if (party.secular && answers[r].weighted){
+                                party.score += 2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        sortScores();
     }
-    // for (var i = 0; i < parties.length; i++) {
-    //     parties[i]['preference'] = 0;
-    //    // console.log(parties[i].name + '  ' + parties[i].secular);
-    //        }
+    function sortScores() {
+        parties.sort(function (a, b) {
+            return b.score - a.score;
+        });
+    }
+
+    console.log(parties);
 }
+
+
+
+
 
 
 

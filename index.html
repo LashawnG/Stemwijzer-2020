@@ -43,7 +43,7 @@
     <img onclick="back()" id="backArrow" src="https://tweedekamer2017.stemwijzer.nl/public/gfx/icon-arrow-back.svg" alt="back" style="display: none;">
     <button onclick="next('pro')" id="btnEens" class="w3-btn w3-black w3-round w3-hover-blue">Eens</button>
     <button onclick="next('none')" id="btnGeen" class="w3-btn w3-black w3-round w3-hover-blue">Geen van beide</button>
-    <button onclick="next('con')" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
+    <button onclick="next('contra')" id="btnOneens" class="w3-btn w3-black w3-round w3-hover-blue">Oneens</button>
     <a id="overslaan" onclick="next('')">Sla deze vraag over</a>
     <label id="label" for="weighted">Vind u dit onderwerp belangrijk?</label>
     <input type="checkbox" id="weighted">
@@ -70,13 +70,14 @@
 
     <label class="partieLabel" for="small">Seculiere partijen</label>
     <input type="checkbox" id="small" onclick="option('small')">
-    <button id="resultBtn" onclick="showResult()" class="w3-btn w3-black w3-round w3-hover-blue">Zie resultaat</button>
+    <button id="resultBtn" onclick="selectParties()" class="w3-btn w3-black w3-round w3-hover-blue">Zie resultaat</button>
 </div>
 <script src="script.js"></script>
 <script>
-    start();
-    counter = 29;
-    next();
+    // start();
+    // counter = 29;
+    // answers.length = 30;
+    // next();
 </script>
 </body>
 </html>
